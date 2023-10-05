@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_add_product"
+            android:icon="@drawable/baseline_post_add_24"
+            android:title="Add Product"
+            />
+        <item
+            android:id="@+id/menu_view_product"
+            android:icon="@drawable/baseline_preview_24"
+            android:title="View Product" />
+        <item
+            android:id="@+id/menu_view_all_product"
+            android:icon="@drawable/baseline_checklist_24"
+            android:title="Show All Product" />
+        <item
+            android:id="@+id/menu_logout"
+            android:icon="@drawable/baseline_logout_24"
+            android:title="Logout" />
+    </group>
+</menu>
