@@ -16,8 +16,10 @@ public class ShowAllProductFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_show_all_product, container, false);
 
-        return inflater.inflate(R.layout.fragment_show_all_product,container,false);
+
+        return view;
 
     }
 

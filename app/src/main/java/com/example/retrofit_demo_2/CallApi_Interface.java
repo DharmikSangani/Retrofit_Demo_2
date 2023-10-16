@@ -1,9 +1,10 @@
 package com.example.retrofit_demo_2;
 
-import com.example.retrofit_demo_2.Models.AddProductData;
+
+import com.example.retrofit_demo_2.Models.AddProductModels.AddProductData;
 import com.example.retrofit_demo_2.Models.LoginData;
 import com.example.retrofit_demo_2.Models.RegisterData;
-import com.example.retrofit_demo_2.Models.ViewProductData;
+import com.example.retrofit_demo_2.Models.ViewProductModel.ViewProductData;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -24,12 +25,13 @@ public interface CallApi_Interface
 
     @FormUrlEncoded
     @POST("addProduct.php")
-    Call<AddProductData> addproductUser(@Field("userid")String userid,
+    Call<AddProductData> AddproductUser(@Field("userid")String userid,
                                         @Field("pname")String pname,
                                         @Field("pprize")String pprize,
-                                        @Field("pdes")String pdes);
+                                        @Field("pdes")String pdes,
+                                        @Field("productimage")String productimage);
 
     @FormUrlEncoded
     @POST("viewProduct.php")
-    Call<ViewProductData> viewproductUser (@Field("uid")String UID);
+    Call<ViewProductData> viewproductUser (@Field("userid")String UID);
 }

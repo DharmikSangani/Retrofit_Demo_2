@@ -1,5 +1,5 @@
 
-package com.example.retrofit_demo_2.Models;
+package com.example.retrofit_demo_2.Models.AddProductModels;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

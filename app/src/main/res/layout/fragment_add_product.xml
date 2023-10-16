@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Product Name : "
-                android:textSize="25sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
 
@@ -40,8 +40,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Product Prize  : "
-                android:textSize="25sp"
+                android:text="Product Price  : "
+                android:textSize="17sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
 
@@ -51,6 +51,7 @@
                 android:textStyle="italic"
                 android:textSize="25dp"
                 android:hint="$100"
+                android:inputType="number"
                 android:id="@+id/f_add_Product_Prize_edittext"
                 android:textColorHint="#1E1D1D"
                 android:textColor="@color/black"/>
@@ -62,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Product Des.   : "
-                android:textSize="25sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
 
@@ -71,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
                 android:textSize="20dp"
-                android:hint="A product description is a form of marketing copy used to describe and explain the benefits of your product."
+                android:hint="explain the benefits of your product."
                 android:id="@+id/f_add_Product_des_edittext"
                 android:textColorHint="#1E1D1D"
                 android:textColor="@color/black"/>
