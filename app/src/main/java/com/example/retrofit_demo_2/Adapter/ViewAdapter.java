@@ -55,7 +55,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.RecycleHolder>
             @Override
             public void onClick(View view) {
                 PopupMenu popupMenu = new PopupMenu(viewProductFragment.getContext(),holder.img2);
-                viewProductFragment.getContext().getMenuInflater().inflate(R.menu.view_menu,popupMenu.getMenu());
+                popupMenu.getMenuInflater().inflate(R.menu.view_menu,popupMenu.getMenu());
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
