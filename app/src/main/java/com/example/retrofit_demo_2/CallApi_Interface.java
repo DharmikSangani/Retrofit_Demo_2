@@ -2,8 +2,10 @@ package com.example.retrofit_demo_2;
 
 
 import com.example.retrofit_demo_2.Models.AddProductModels.AddProductData;
+import com.example.retrofit_demo_2.Models.DeleteData;
 import com.example.retrofit_demo_2.Models.LoginData;
 import com.example.retrofit_demo_2.Models.RegisterData;
+import com.example.retrofit_demo_2.Models.UpdateData;
 import com.example.retrofit_demo_2.Models.ViewProductModel.ViewProductData;
 
 import retrofit2.Call;
@@ -34,4 +36,16 @@ public interface CallApi_Interface
     @FormUrlEncoded
     @POST("viewProduct.php")
     Call<ViewProductData> viewproductUser (@Field("userid")String UID);
+
+    @FormUrlEncoded
+    @POST("updateproduct.php")
+    Call<UpdateData> updateuser (@Field("id")String id,
+                                 @Field("name")String name,
+                                 @Field("price")String price,
+                                 @Field("description")String description,
+                                 @Field("imagedata")String imagedata);
+
+    @FormUrlEncoded
+    @POST("deleteproduct.php")
+    Call<DeleteData> deleteuser (@Field("id")String id);
 }

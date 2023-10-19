@@ -1,7 +1,7 @@
 package com.example.retrofit_demo_2.Adapter;
 
 
-
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,39 +14,49 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.retrofit_demo_2.Dialog_Interface;
+import com.example.retrofit_demo_2.InstanceClass;
+import com.example.retrofit_demo_2.Models.DeleteData;
 import com.example.retrofit_demo_2.Models.ViewProductModel.Product_Data;
 import com.example.retrofit_demo_2.R;
 import com.example.retrofit_demo_2.ui.ViewProductFragment;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.RecycleHolder> {
 
     ViewProductFragment viewProductFragment;
     List<Product_Data> productdatalist;
+    Dialog_Interface dialogInterface;
 
-    public ViewAdapter(ViewProductFragment viewProductFragment, List<Product_Data> productdatalist) {
+    public ViewAdapter(ViewProductFragment viewProductFragment, List<Product_Data> productdatalist, Dialog_Interface dialogInterface) {
         this.viewProductFragment = viewProductFragment;
         this.productdatalist = productdatalist;
+        this.dialogInterface=dialogInterface;
     }
+
     @NonNull
     @Override
     public RecycleHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_product_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_product_item, parent, false);
         RecycleHolder holder = new RecycleHolder(view);
 
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecycleHolder holder, int position) {
-        holder.t1.setText(""+productdatalist.get(position).getPname());
-        holder.t2.setText(""+productdatalist.get(position).getPprice());
-        holder.t3.setText(""+productdatalist.get(position).getPdes());
+    public void onBindViewHolder(@NonNull RecycleHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.t1.setText("" + productdatalist.get(position).getPname());
+        holder.t2.setText("" + productdatalist.get(position).getPprice());
+        holder.t3.setText("" + productdatalist.get(position).getPdes());
 
         Glide
                 .with(viewProductFragment)
-                .load("https://dharmikandroid.000webhostapp.com/MyApp/"+productdatalist.get(position).getPimg())
+                .load("https://dharmikandroid.000webhostapp.com/MyApp/" + productdatalist.get(position).getPimg())
                 .centerCrop()
                 .placeholder(R.drawable.animation)
                 .into(holder.img);
@@ -54,17 +64,28 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.RecycleHolder>
         holder.img2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popupMenu = new PopupMenu(viewProductFragment.getContext(),holder.img2);
-                popupMenu.getMenuInflater().inflate(R.menu.view_menu,popupMenu.getMenu());
+                PopupMenu popupMenu = new PopupMenu(viewProductFragment.getContext(), holder.img2);
+                popupMenu.getMenuInflater().inflate(R.menu.view_menu, popupMenu.getMenu());
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        if (menuItem.getItemId()==R.id.menu_update){
-
+                        if (menuItem.getItemId() == R.id.menu_update) {
+                            dialogInterface.showDialog(position,productdatalist);
                         }
-                        if (menuItem.getItemId()==R.id.menu_dalete){
+                        if (menuItem.getItemId() == R.id.menu_dalete) {
 
+                            InstanceClass.API_Calling().deleteuser("id").enqueue(new Callback<DeleteData>() {
+                                @Override
+                                public void onResponse(Call<DeleteData> call, Response<DeleteData> response) {
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<DeleteData> call, Throwable t) {
+
+                                }
+                            });
                         }
 
                         return true;
@@ -81,8 +102,9 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.RecycleHolder>
     }
 
     public class RecycleHolder extends RecyclerView.ViewHolder {
-        TextView t1,t2,t3;
-        ImageView img,img2;
+        TextView t1, t2, t3;
+        ImageView img, img2;
+
         public RecycleHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -93,4 +115,11 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.RecycleHolder>
             img2 = itemView.findViewById(R.id.item_v_p_menu);
         }
     }
+
+
+
+
+
 }
+
+

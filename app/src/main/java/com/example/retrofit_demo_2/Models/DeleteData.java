@@ -1,13 +1,12 @@
 
-package com.example.retrofit_demo_2.Models.ViewProductModel;
+package com.example.retrofit_demo_2.Models;
 
-import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class ViewProductData {
+public class DeleteData {
 
     @SerializedName("connection")
     @Expose
@@ -15,9 +14,6 @@ public class ViewProductData {
     @SerializedName("result")
     @Expose
     private Integer result;
-    @SerializedName("productdata")
-    @Expose
-    private List<Product_Data> productdata;
 
     public Integer getConnection() {
         return connection;
@@ -34,15 +30,5 @@ public class ViewProductData {
     public void setResult(Integer result) {
         this.result = result;
     }
-
-    public List<Product_Data> getProductdata() {
-        return productdata;
-    }
-
-    public void setProductdata(List<Product_Data> productdata) {
-        this.productdata = productdata;
-    }
-
-
 
 }
