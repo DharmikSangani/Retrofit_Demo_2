@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -73,12 +74,12 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.RecycleHolder>
                         if (menuItem.getItemId() == R.id.menu_update) {
                             dialogInterface.showDialog(position,productdatalist);
                         }
-                        if (menuItem.getItemId() == R.id.menu_dalete) {
+                        if (menuItem.getItemId() == R.id.menu_delete) {
 
-                            InstanceClass.API_Calling().deleteuser("id").enqueue(new Callback<DeleteData>() {
+                            InstanceClass.API_Calling().deleteuser(productdatalist.get(position).getId()).enqueue(new Callback<DeleteData>() {
                                 @Override
                                 public void onResponse(Call<DeleteData> call, Response<DeleteData> response) {
-
+                                    Toast.makeText(view.getContext(),"Your Product Is Delete", Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override

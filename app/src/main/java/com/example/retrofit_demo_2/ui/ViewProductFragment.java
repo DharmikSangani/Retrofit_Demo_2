@@ -39,11 +39,7 @@ import com.example.retrofit_demo_2.Models.ViewProductModel.Product_Data;
 import com.example.retrofit_demo_2.Models.ViewProductModel.ViewProductData;
 import com.example.retrofit_demo_2.R;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -165,6 +161,8 @@ public class ViewProductFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("MMM", "onResponse: btn click"+btn);
+
 
                 InstanceClass.API_Calling().updateuser(list.get(pos).getId(),
                                 list.get(pos).getPname(),
@@ -177,6 +175,7 @@ public class ViewProductFragment extends Fragment {
                             @Override
                             public void onResponse(Call<UpdateData> call, Response<UpdateData> response) {
 
+                                Toast.makeText(getContext(), "Data Update", Toast.LENGTH_LONG).show();
                             }
 
                             @Override
