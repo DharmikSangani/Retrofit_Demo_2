@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.retrofit_demo_2.Dialog_Interface;
 import com.example.retrofit_demo_2.InstanceClass;
 import com.example.retrofit_demo_2.Models.DeleteData;
@@ -58,9 +59,12 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.RecycleHolder>
         Glide
                 .with(viewProductFragment)
                 .load("https://dharmikandroid.000webhostapp.com/MyApp/" + productdatalist.get(position).getPimg())
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
                 .centerCrop()
                 .placeholder(R.drawable.animation)
                 .into(holder.img);
+
 
         holder.img2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +83,8 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.RecycleHolder>
                             InstanceClass.API_Calling().deleteuser(productdatalist.get(position).getId()).enqueue(new Callback<DeleteData>() {
                                 @Override
                                 public void onResponse(Call<DeleteData> call, Response<DeleteData> response) {
+                                    productdatalist.remove(position);
+                                    notifyDataSetChanged();
                                     Toast.makeText(view.getContext(),"Your Product Is Delete", Toast.LENGTH_SHORT).show();
                                 }
 
